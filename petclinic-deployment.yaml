@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: petclinic-deployment
+  labels:
+    app: petclinic
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: petclinic
+  template:
+    metadata:
+      labels:
+        app: petclinic
+    spec:
+      containers:
+      - name: petclinic
+        image: 52.78.7.41:8000/petclinic/spring-petclinic-rest:981a595_9
+        ports:
+        - containerPort: 9966
+      imagePullSecrets:
+      - name: harbor-credentials
